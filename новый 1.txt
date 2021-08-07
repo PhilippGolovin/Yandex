@@ -1,32 +1,4 @@
-select
-count(m.member_id) as Amount_of_members,
-case when o.order_id is not null then count(member_id) end as f,
-count(o.order_id),
-sum(o.order_amount)
-from tbl_member m inner join tbl_order o on
-m.member_id=o.member_id
-
-
-
 SELECT 
-  count(m.member_id) AS Amount_of_members ,
-  sum(x.count_orders) as total_count_of_orders,
-  sum(x.sum_orders) as total_sum_of_orders
-FROM 
-  tbl_member m 
-  LEFT JOIN (
-    SELECT 
-      o.member_id,
-      count(o.order_id) as count_orders ,
-      sum(o.order_amount) as sum_orders
-    FROM
-      tbl_order o
-    GROUP BY o.member_id
- )x ON m.member_id = x.member_id
- 
- 
- 
- SELECT 
   count(m.member_id) AS Amount_of_members ,
   sum(x.count_orders) as total_count_of_orders,
   sum(x.sum_orders) as total_sum_of_orders,
@@ -42,3 +14,12 @@ FROM
       tbl_order o
     GROUP BY o.member_id
  )x ON m.member_id = x.member_id
+ 
+ 
+firstname
+	,lastname
+	,HireDate
+	,(STRFTIME('%Y', 'now') - STRFTIME('%Y', HireDate)) - (STRFTIME('%m-%d', 'now') < STRFTIME('%m-%d', HireDate)) AS Worktime
+FROM employees
+WHERE Worktime >= 15
+ORDER BY lastname ASC
