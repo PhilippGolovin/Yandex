@@ -16,7 +16,7 @@ FROM
  )x ON m.member_id = x.member_id
  
  
-firstname
+SELECT firstname
 	,lastname
 	,HireDate
 	,(STRFTIME('%Y', 'now') - STRFTIME('%Y', HireDate)) - (STRFTIME('%m-%d', 'now') < STRFTIME('%m-%d', HireDate)) AS Worktime
